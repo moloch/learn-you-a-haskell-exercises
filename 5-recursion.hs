@@ -1,7 +1,9 @@
 -- Raise x to the power y, using recursion
 -- For example, power 5 2 = 25
 power :: Int -> Int -> Int
-power x y = undefined
+power x 0 = 1
+power x 1 = x
+power x n = x * power x (n-1)
 
 -- create a list of length n of the fibbonaci sequence in reverse order
 -- examples: fib 0 = [0]
@@ -9,7 +11,11 @@ power x y = undefined
 --	     fib 10 = [55,34,21,13,8,5,3,2,1,1,0]	
 -- try to use a where clause
 fib :: (Num a, Eq a) => a -> [a]
-fib x = undefined
+fib x
+    | x == 0 = [0]
+    | x == 1 = [1, 0]
+    | otherwise = sum (take 2 prev) : prev
+    where prev = fib (x-1)
 
 -- This is not recursive, but have a go anyway.
 -- Create a function which takes two parameters, a number and a step
