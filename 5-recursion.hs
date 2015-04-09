@@ -1,3 +1,20 @@
+mytake :: (Num i, Ord i) => i -> [a] -> [a]
+mytake _ [] = []
+mytake 0 x = []
+mytake n (x:xs) = x : mytake (n-1) xs
+
+reverse' :: [a] -> [a]
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x]
+
+sum' :: (Integral a) => a -> a -> a
+sum' x 0 = x
+sum' x y = succ (sum' x (y-1))
+
+sub' :: (Integral a) => a -> a -> a
+sub' x 0 = x
+sub' x y = pred (sub' x (y-1))
+
 -- Raise x to the power y, using recursion
 -- For example, power 5 2 = 25
 power :: Int -> Int -> Int
@@ -24,8 +41,9 @@ fib x
 --			    stepReverseSign -3 1 = 4
 --			    stepReverseSign 1 2 = -3
 stepReverseSign :: (Fractional a, Ord a) => a -> a -> a
-stepReverseSign a = undefined
-
+stepReverseSign x y
+    | x < 0 = abs x + y
+    | otherwise = -1 * (abs x + y)
 {- Lets calculate pi.
  - The Leibniz formula for pi (http://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80)
  - Can be defined as pi = (4/1) - (4/3) + (4/5) - (4/7) ....
